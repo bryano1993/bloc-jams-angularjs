@@ -1,15 +1,18 @@
 (function() {
   function SongPlayer(Fixtures) {
+
     /**
     * @desc empty SongPlayer object
     * @type {Object} Song Player
     */
     var SongPlayer = {};
+
     /**
     * @desc current album object
     * @type {object} currentAlbum
     */
     var currentAlbum = Fixtures.getAlbum();
+
    /**
     * @desc Buzz object audio file
     * @type {Object}
@@ -24,6 +27,16 @@
        currentBuzzObject.play();
        song.playing = true;
      }
+
+     /**
+     * @function stopSong
+     * @desc private function that will stop the current Buzz object.
+     */
+     var stopSong = function (song) {
+       currentBuzzObject.stop();
+       song.playing = null;
+     }
+
     /**
      * @function setSong
      * @desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -31,8 +44,7 @@
      */
     var setSong = function(song) {
       if (currentBuzzObject) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong(song);
       }
 
       currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -81,6 +93,10 @@
       song.playing = false;
     };
 
+    /**
+     * @function previous
+     * @desc plays the previous song in the album
+     */
     SongPlayer.previous = function() {
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
       currentSongIndex--;
@@ -94,6 +110,24 @@
          playSong(song);
      }
     };
+
+    /**
+     * @function next
+     * @desc plays the next song in the albumData
+     */
+    SongPlayer.next = function() {
+      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      currentSongIndex ++;
+
+      if (currentSongIndex > currentAlbum.songs.length) {
+        currentBuzzObject.stop();
+        SongPlayer.currentSong.playing = null;
+      } else {
+        var song = currentAlbum.songs[currentSongIndex];
+        setSong(song);
+        playSong(song);
+      }
+    }
     return SongPlayer;
   }
 
