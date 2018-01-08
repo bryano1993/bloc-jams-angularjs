@@ -1,23 +1,25 @@
 (function() {
   function SongPlayer() {
-    /*
+
+    /**
     * @desc empty SongPlayer object
     * @type {Object} Song Player
     */
     var SongPlayer = {};
-    /*
+
+    /**
     * @desc selected song
     * @type {Object} currentSong
     */
     var currentSong = null;
-<<<<<<< HEAD
-   /*
+
+   /**
     * @desc Buzz object audio file
     * @type {Object}
     */
     var currentBuzzObject = null;
 
-    /*
+    /**
     * @desc SongPlayer object
     * @function playSong
     */
@@ -26,17 +28,7 @@
        song.playing = true;
      }
 
-    /*
-=======
-
     /**
-   * @desc Buzz object audio file
-   * @type {Object}
-   */
-    var currentBuzzObject = null;
-
-     /**
->>>>>>> checkpoint-7-services2
      * @function setSong
      * @desc Stops currently playing song and loads new audio file as currentBuzzObject
      * @param {Object} song
@@ -54,7 +46,8 @@
 
       currentSong = song;
     }
-    /*
+
+    /**
      * @desc method to play a selected song
      * @param {Object} song
      */
@@ -69,7 +62,7 @@
         }
     };
 
-    /*
+    /**
      * @desc method that pauses selected songs
      * @param {Object} song
      */
@@ -78,7 +71,7 @@
       song.playing = false;
     };
     return SongPlayer;
-  }
+    }
 
 
   angular
