@@ -15,6 +15,16 @@
     * @type {Object}
     */
     var currentBuzzObject = null;
+
+    /*
+    * @desc SongPlayer object
+    * @function playSong
+    */
+     var playSong = function (song){
+       currentBuzzObject.play();
+       song.playing = true;
+     }
+
     /*
      * @function setSong
      * @desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -40,11 +50,10 @@
     SongPlayer.play = function(song) {
       if (currentSong !== song){
         setSong(song);
-        currentBuzzObject.play();
-        song.playing = true;
+        playSong(song);
       } else if (currentSong === song) {
           if (currentBuzzObject.isPaused()) {
-            currentBuzzObject.play();
+             currentBuzzObject.play();
           }
         }
     };
@@ -59,14 +68,7 @@
     }
     return SongPlayer;
   }
-   /*
-   * @desc SongPlayer object
-   * @function playSong
-   */
-    var playSong = function (){
-      currentBuzzObject.play();
-      song.playing = true;
-    }
+
 
   angular
     .module('blocJams')
