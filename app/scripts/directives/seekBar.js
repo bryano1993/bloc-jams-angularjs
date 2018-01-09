@@ -69,7 +69,7 @@
 
              var notifyOnChange = function(newValue) {
                if (typeof scope.onChange === 'function') {
-                 scope.onChange({value: });
+                 scope.onChange({value:newValue });
                }
              };
          }
